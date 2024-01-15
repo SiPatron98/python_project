@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <section class="mx-auto my-5" style="max-width: 70rem;">
+        <div class="card testimonial-card mt-2 mb-3">
+            <div class="card-up aqua-gradient"></div>
+                <div class="avatar mx-auto white">
+                <img src="../media/stacja/avatar.jpg" class="rounded-circle img-fluid" 
+                    alt="avatar">
+                </div>
+                <div class="card-body text-center">
+                    <h3 class="card-title font-weight-bold">Patryk Łuczak</h3>
+                    <hr>
+                    <p><i class="fas fa-quote-left">
+                        Młody magister inżynier elektrotechniki, który próbuje swoich sił w programowaniu. Ma na swoim koncie projekt robota mobilnego sterowanego
+                        aplikacją na smartfona, która została napisana w języku Java.
+                    </i></p>
+                    <hr>
+                    <p><i class="fas fa-quote-left">
+                        Numer albumu: 21585
+                        <br/>
+                        Kontakt: <a href="mailto:patrykluczak98@gmail.com">patrykluczak98@gmail.com</a>
+                    </i></p>
+                </div>
+        </div>
+    </section>
+</div>
+<style>
+.testimonial-card .card-up {
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .35rem;
+    border-top-right-radius: .35rem;
+}
+
+.aqua-gradient {
+    background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+}
+
+.testimonial-card .avatar {
+    width: 200px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 80%;
+}
+</style>
+{% endblock content %}

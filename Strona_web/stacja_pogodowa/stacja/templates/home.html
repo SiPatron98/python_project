@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    <br/>
+    {% if flag == 0 %}
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        Pogoda dla: {{city}}, {{country}}
+    </div>
+    {% elif flag == 1 %}
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        Nie podano miasta, podaj jakieś.
+    </div>
+    {% elif flag == 2 %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        Podano złe miasto! Podaj inne.
+    </div>
+    {% endif %} 
+</div>
+    
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width:410px;" >
+                <img src="media/stacja/temp.jpg" class="card-img-top" alt="Temperatura" >
+                <div class="card-body">
+                    <h5 class="card-title">Odczyt temperatury</h5>
+                    <p class="card-text">Temperatura: {{temperature}} °C</p>
+                    <p class="card-text">Temperatura odczuwalna: {{sensed_temperature}} °C</p>
+                    <p class="card-text">Temperatura maksymalna: {{max_temperature}} °C</p>
+                    <p class="card-text">Temperatura minimalna: {{min_temperature}} °C</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width:410px; height:618px;">
+                {% if weather_description == 'bezchmurnie' %}
+                    <img src="media/stacja/sun.png" class="card-img-top" alt="...">
+                {% elif weather_description == 'zachmurzenie małe' or  weather_description == 'zachmurzenie umiarkowane' or weather_description == 'pochmurnie' %}
+                    <img src="media/stacja/cloud.png" class="card-img-top" alt="...">
+                {% elif weather_description == 'słabe opady deszczu' %}
+                    <img src="media/stacja/light_rain.png" class="card-img-top" alt="...">
+                {% elif weather_description == 'umiarkowane opady deszczu' %}
+                    <img src="media/stacja/rain.png" class="card-img-top" alt="...">
+                {% elif weather_description == 'burza' %}
+                    <img src="media/stacja/thunder.png" class="card-img-top" alt="...">
+                {% else %}
+                    <img src="media/stacja/default.png" class="card-img-top" alt="...">
+                {% endif %} 
+                <div class="card-body">
+                    <h5 class="card-title">Opis pogody</h5>
+                    <br/>
+                    <p class="card-text">{{weather_description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width:410px; height:618px;">
+                <img src="media/stacja/hum_press.png" class="card-img-top" alt="Temperatura">
+                <div class="card-body">
+                    <h5 class="card-title">Pozostałe parametry</h5>
+                    <p class="card-text">Wilgotność: {{humidity}} %</p>
+                    <p class="card-text">Ciśnienie: {{pressure}} hPa</p>
+                    <p class="card-text">Prędkość wiatru: {{wind_speed_km_h}} km/h = {{wind_speed_m_s}} m/s</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+

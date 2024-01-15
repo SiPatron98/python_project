@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="container-my">
+                <div class="circular-progress">
+                    <span class="progress-value">{{ temperature }}°C</span>
+                </div>
+                <span class="text">Temperatura</span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container-my">
+                <div class="circular-progress-hum">
+                    <span class="progress-value-hum">{{ humidity }}%</span>
+                </div>
+                <span class="text-hum">Wilgotność</span>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+
+
+
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.container-my{
+    display: flex;
+    width: 420px;
+    padding: 50px 0;
+    border-radius: 8px;
+    background: white;
+    flex-direction: column;
+    align-items: center;
+}
+.circular-progress{
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background: conic-gradient(red 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+}
+.progress-value{
+    position: relative;
+    font-size: 50px;
+    font-weight: 600;
+    color: red;
+
+}
+.text{
+    font-size: 30px;
+    font-weight: 500;
+    color: crimson;
+
+}
+.circular-progress-hum{
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background: conic-gradient(blue 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.circular-progress-hum::before{
+    content: "";
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+}
+.progress-value-hum{
+    position: relative;
+    font-size: 50px;
+    font-weight: 600;
+    color: blue;
+
+}
+.text-hum{
+    font-size: 30px;
+    font-weight: 500;
+    color: blue;
+}
+</style>
+
+<script type="text/javascript">
+    let circularMeter = document.querySelector(".circular-progress"),
+        progressValue = document.querySelector(".progress-value"),
+        circularMeterHum = document.querySelector(".circular-progress-hum"),
+        progressValueHum = document.querySelector(".progress-value-hum");
+
+
+    let progressStartValue = 0,
+        progressStartValueHum = 0,
+        progressEndValue = "{{ temperature }}",
+        progressEndValueHum = "{{ humidity }}",
+        speed = 50;
+
+    let progress = setInterval(() => {
+        progressStartValue++;
+
+        progressValue.textContent = `${progressStartValue}°C`
+        circularMeter.style.background = `conic-gradient(red ${progressStartValue * 3.6}deg, #ededed 0deg)`
+
+        if(progressStartValue == parseInt(progressEndValue)){
+            
+            clearInterval(progress);
+        }
+    }, speed);
+    let progressHum = setInterval(() => {
+        progressStartValueHum++;
+
+        progressValueHum.textContent = `${progressStartValueHum}%`
+        circularMeterHum.style.background = `conic-gradient(blue ${progressStartValueHum * 3.6}deg, #ededed 0deg)`
+
+        if(progressStartValueHum == parseInt(progressEndValueHum)){
+            
+            clearInterval(progressHum);
+        }
+    }, speed);
+</script>
+
+{% endblock content %}
